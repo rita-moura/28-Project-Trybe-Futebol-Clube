@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3000
 
 # Configurar os comandos para iniciar a aplicação de acordo com as boas práticas
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "start" ]
