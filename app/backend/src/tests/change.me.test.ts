@@ -4,42 +4,26 @@ import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
 import { app } from '../app';
-import Example from '../database/models/ExampleModel';
-
-import { Response } from 'superagent';
+import TeamsModel from '../database/models/TeamsModel';
+import { teams } from './mocks/mocksModel';
 
 chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Seu teste', () => {
-  /**
-   * Exemplo do uso de stubs com tipos
-   */
+describe('Testa a rota /teams', () => {
+  afterEach(() => {
+    sinon.restore();
+  });
 
-  // let chaiHttpResponse: Response;
+  it('Caso de sucesso, retorna corretamente a lista de times com status 200', async () => {
 
-  // before(async () => {
-  //   sinon
-  //     .stub(Example, "findOne")
-  //     .resolves({
-  //       ...<Seu mock>
-  //     } as Example);
-  // });
+    sinon.stub(TeamsModel, 'findAll').resolves();
 
-  // after(()=>{
-  //   (Example.findOne as sinon.SinonStub).restore();
-  // })
+    const res = await chai.request(app).get('/teams');
 
-  // it('...', async () => {
-  //   chaiHttpResponse = await chai
-  //      .request(app)
-  //      ...
-
-  //   expect(...)
-  // });
-
-  it('Seu sub-teste', () => {
-    expect(false).to.be.eq(true);
+    expect(res).to.have.status(200);
+    expect(res.body).to.deep.equal(teams);
   });
 });
+
