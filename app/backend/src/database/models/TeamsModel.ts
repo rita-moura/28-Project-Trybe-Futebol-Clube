@@ -1,6 +1,11 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '.';
 
+export interface Teams {
+  id: number;
+  teamName: string;
+}
+
 class TeamsModel extends Model {
   declare id: number;
   declare teamName: string;

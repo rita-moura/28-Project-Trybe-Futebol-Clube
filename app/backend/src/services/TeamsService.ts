@@ -1,9 +1,4 @@
-import TeamsModel from '../database/models/TeamsModel';
-
-export type Teams = {
-  id: number;
-  teamName: string;
-};
+import TeamsModel, { Teams } from '../database/models/TeamsModel';
 
 class TeamsService {
   public static async findAll(): Promise<Teams[]> {
