@@ -20,4 +20,10 @@ describe('GET /teams, Service', () => {
     sinon.stub(TeamsModel, 'findAll').resolves([]);
     expect(await TeamsService.findAll()).to.be.deep.equal([]);
   });
+
+  // it('Testa se retorna o time correto, bucando pelo id', async () => {
+  //   sinon.stub(TeamsModel, 'findByPk').resolves({ id: 1, teamName: 'Avaí/Kindermann' });
+
+  //   expect(await TeamsService.findById(1)).to.be.deep.equal({ id: 1, teamName: 'Avaí/Kindermann' });
+  // });
 });
