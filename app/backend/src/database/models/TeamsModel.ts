@@ -6,7 +6,7 @@ export interface Teams {
   teamName: string;
 }
 
-class TeamsModel extends Model {
+class TeamsModel extends Model<Teams> {
   declare id: number;
   declare teamName: string;
 }
@@ -17,6 +17,7 @@ TeamsModel.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
+      allowNull: false,
     },
     teamName: {
       type: DataTypes.STRING,
