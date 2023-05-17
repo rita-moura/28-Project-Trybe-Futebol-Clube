@@ -13,7 +13,7 @@ export const generateToken = (id: number) => {
     info,
     secretKey,
     {
-      expiresIn: '1m',
+      expiresIn: '1d',
       algorithm: 'HS256',
     },
   );

@@ -1,5 +1,5 @@
 import TeamsModel from '../database/models/TeamsModel';
-import MatchesModel from '../database/models/MatchesModel';
+import MatchesModel, { Matches } from '../database/models/MatchesModel';
 
 class MatchesService {
   public static async findAll(inProgress: string) {
@@ -24,6 +24,16 @@ class MatchesService {
 
   public static async updateToFinish(id: string) {
     const matchUpdate = await MatchesModel.update({ inProgress: false }, { where: { id } });
+    return matchUpdate;
+  }
+
+  public static async updateToGoals(match: Matches, id: string) {
+    const { homeTeamGoals, awayTeamGoals } = match;
+    const matchUpdate = await MatchesModel.update({
+      homeTeamGoals, awayTeamGoals,
+    }, {
+      where: { id },
+    });
     return matchUpdate;
   }
 }
