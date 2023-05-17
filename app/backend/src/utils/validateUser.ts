@@ -6,8 +6,11 @@ const validate = ({ password, email }: Login): void => {
   const validateEmail = email.match(emailRegex);
   const validatePassword = password.length >= 6;
 
-  if (!validateEmail || !validatePassword) {
-    throw new ValidadeError(401, 'Email ou senha inválido');
+  if (!validateEmail) {
+    throw new ValidadeError(401, 'Invalid email or password');
+  }
+  if (!validatePassword) {
+    throw new ValidadeError(401, 'Invalid email or password');
   }
 };
 
