@@ -4,7 +4,7 @@ import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 const { expect } = chai;
 
-import generateToken from '../utils/auth';
+import {generateToken} from '../utils/auth';
 import * as Token from 'jsonwebtoken';
 
 chai.use(chaiHttp);
