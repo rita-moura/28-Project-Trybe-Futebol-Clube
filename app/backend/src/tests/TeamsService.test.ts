@@ -6,7 +6,7 @@ const { expect } = chai;
 
 import TeamsModel from '../database/models/TeamsModel';
 import TeamsService from '../services/TeamsService';
-import { teamById } from './mocks/mocksModel';
+import { teamById } from './mocks/TeamsMock';
 
 chai.use(chaiHttp);
 

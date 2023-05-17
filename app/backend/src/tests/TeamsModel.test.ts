@@ -4,7 +4,7 @@ import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
 import { app } from '../app';
-import { teams } from './mocks/mocksModel';
+import { teams } from './mocks/TeamsMock';
 const { expect } = chai;
 import TeamsModel from '../database/models/TeamsModel';
 
