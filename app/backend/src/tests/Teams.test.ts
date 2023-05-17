@@ -4,13 +4,14 @@ import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
 import { app } from '../app';
-import { teams } from './mocks/TeamsMock';
+import { teamById, teams } from './mocks/TeamsMock';
 const { expect } = chai;
 import TeamsModel from '../database/models/TeamsModel';
+import TeamsService from '../services/TeamsService';
 
 chai.use(chaiHttp);
 
-describe('GET /teams, Model', () => {
+describe('GET /teams', () => {
   afterEach(() => {
     sinon.restore();
   });
@@ -33,7 +34,20 @@ describe('GET /teams, Model', () => {
 
     expect(result.status).to.be.equal(200);
     expect(result.body).to.be.deep.equal(teams[0]);
-  })
+  });
 
+  it('Testa se retorna uma lista com todos os times', async () => {
+    sinon.stub(TeamsModel, 'findAll').resolves([]);
+    
+    expect(await TeamsService.findAll()).to.be.deep.equal([]);
+  });
+
+  it('Testa se retorna o time correto, bucando pelo id', async () => {
+    // @ts-ignore
+    sinon.stub(TeamsModel, 'findByPk').resolves(teamById);
+
+    expect(await TeamsService.findById(1)).to.be.deep.equal(teamById);
+  });
 });
+
 
