@@ -21,6 +21,11 @@ class MatchesService {
 
     return matches;
   }
+
+  public static async updateToFinish(id: string) {
+    const matchUpdate = await MatchesModel.update({ inProgress: false }, { where: { id } });
+    return matchUpdate;
+  }
 }
 
 export default MatchesService;
