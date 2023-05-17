@@ -11,7 +11,7 @@ import UsersService from '../services/UsersService';
 
 chai.use(chaiHttp);
 
-describe('POST /login, Model', () => {
+describe('POST /login', () => {
   afterEach(() => {
     sinon.restore();
   });
@@ -39,7 +39,7 @@ describe('POST /login, Model', () => {
       .send(invalidValues);
 
     expect(result.status).to.be.equal(401);
-  })
+  });
 
 });
 
