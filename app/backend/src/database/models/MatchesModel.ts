@@ -16,6 +16,7 @@ export type MatchCreate = {
   homeTeamGoals: number;
   awayTeamId: number;
   awayTeamGoals: number;
+  inProgress?: boolean;
 };
 
 class MatchesModel extends Model<Matches, MatchCreate> {

@@ -10,6 +10,29 @@ class MatchesController {
     res.status(200).json(matches);
   }
 
+  public static async create(req: Request, res: Response) {
+    const match = req.body;
+
+    const newMatch = await MatchesService.create(match);
+
+    const {
+      id,
+      homeTeamId,
+      homeTeamGoals,
+      awayTeamId,
+      awayTeamGoals,
+      inProgress } = newMatch;
+
+    res.status(201).json({
+      id,
+      homeTeamId,
+      homeTeamGoals,
+      awayTeamId,
+      awayTeamGoals,
+      inProgress,
+    });
+  }
+
   public static async updateToFinish(req: Request, res: Response) {
     const { id } = req.params;
     await MatchesService.updateToFinish(id);

@@ -6,6 +6,7 @@ const matchesRouter = Router();
 
 matchesRouter
   .get('/', MatchesController.findAll)
+  .post('/', tokenValidate, MatchesController.create)
   .patch('/:id/finish', tokenValidate, MatchesController.updateToFinish)
   .patch('/:id', tokenValidate, MatchesController.updateToGols);
 

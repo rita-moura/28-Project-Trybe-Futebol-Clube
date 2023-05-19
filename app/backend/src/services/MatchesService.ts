@@ -1,5 +1,5 @@
 import TeamsModel from '../database/models/TeamsModel';
-import MatchesModel, { Matches } from '../database/models/MatchesModel';
+import MatchesModel, { MatchCreate, Matches } from '../database/models/MatchesModel';
 
 class MatchesService {
   public static async findAll(inProgress: string) {
@@ -20,6 +20,15 @@ class MatchesService {
     }
 
     return matches;
+  }
+
+  public static async create(match: MatchCreate) {
+    const newMatch = await MatchesModel.create({
+      ...match,
+      inProgress: true,
+    });
+
+    return newMatch.dataValues;
   }
 
   public static async updateToFinish(id: string) {
