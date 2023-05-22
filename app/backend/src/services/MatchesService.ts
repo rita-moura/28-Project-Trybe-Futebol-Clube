@@ -2,6 +2,7 @@ import ValidadeError from '../utils/validateError';
 import TeamsModel from '../database/models/TeamsModel';
 import MatchesModel, { MatchCreate, Matches } from '../database/models/MatchesModel';
 import TeamsService from './TeamsService';
+import { createLeaderBoard } from '../utils/LeaderBoard';
 
 class MatchesService {
   public static async findAll(inProgress: string) {
@@ -57,6 +58,13 @@ class MatchesService {
       where: { id },
     });
     return matchUpdate;
+  }
+
+  public static async leaderBoard(param: string) {
+    const teams = await TeamsService.findAll();
+    const matches = await this.findAll('false');
+    const result = createLeaderBoard(teams, matches, param);
+    return result;
   }
 }
 
