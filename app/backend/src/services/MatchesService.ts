@@ -1,5 +1,7 @@
+import ValidadeError from '../utils/validateError';
 import TeamsModel from '../database/models/TeamsModel';
 import MatchesModel, { MatchCreate, Matches } from '../database/models/MatchesModel';
+import TeamsService from './TeamsService';
 
 class MatchesService {
   public static async findAll(inProgress: string) {
@@ -23,6 +25,17 @@ class MatchesService {
   }
 
   public static async create(match: MatchCreate) {
+    const homeTeamExist = await TeamsService.findById(match.homeTeamId);
+    const awayTeamExist = await TeamsService.findById(match.awayTeamId);
+
+    if (!homeTeamExist || !awayTeamExist) {
+      throw new ValidadeError(404, 'There is no team with such id!');
+    }
+
+    if (match.homeTeamId === match.awayTeamId) {
+      throw new ValidadeError(422, 'It is not possible to create a match with two equal teams');
+    }
+
     const newMatch = await MatchesModel.create({
       ...match,
       inProgress: true,
