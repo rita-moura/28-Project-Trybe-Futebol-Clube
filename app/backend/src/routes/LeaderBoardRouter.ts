@@ -6,6 +6,6 @@ const leaderBoardRouter = Router();
 leaderBoardRouter
   .get('/', MatchesController.leaderBoard)
   .get('/home', MatchesController.leaderBoard)
-  .get('/await', MatchesController.leaderBoard);
+  .get('/away', MatchesController.leaderBoard);
 
 export default leaderBoardRouter;
