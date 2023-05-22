@@ -15,22 +15,7 @@ class MatchesController {
 
     const newMatch = await MatchesService.create(match);
 
-    const {
-      id,
-      homeTeamId,
-      homeTeamGoals,
-      awayTeamId,
-      awayTeamGoals,
-      inProgress } = newMatch;
-
-    res.status(201).json({
-      id,
-      homeTeamId,
-      homeTeamGoals,
-      awayTeamId,
-      awayTeamGoals,
-      inProgress,
-    });
+    res.status(201).json(newMatch);
   }
 
   public static async updateToFinish(req: Request, res: Response) {
